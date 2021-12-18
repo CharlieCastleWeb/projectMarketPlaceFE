@@ -47,11 +47,16 @@
         <select 
             class="form-select mt-3" 
             id="exampleFormControlSelect1"
-            formGroupName="organizationType">
-            <option value="empresaPrivada">Empresa privada</option>
-            <option value="empresaPrivada">Entidad educativa</option>
-            <option value="empresaPrivada">Entidad sanitaria</option>
-            <option value="empresaPrivada">Administración Pública</option>
+            formGroupName="organizationType"
+            >
+            <option [ngValue]="" disabled>
+                Seleccione un tipo
+            </option>
+            <option
+                *ngFor="let type of organizationTypes" 
+                [ngValue]="type">
+                {{ type }}
+            </option>
         </select>
         <div class="d-flex justify-content-between mt-5">
             <a routerLink="/auth/login" class="mt-4">Login</a>

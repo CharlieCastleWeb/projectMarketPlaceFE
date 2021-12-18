@@ -10,7 +10,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class RegisterComponent {
 
-  organizationTypes: string[] = [];
+  organizationTypes: string[] = [ 'Particular',
+                                  'Empresa Privada', 
+                                  'Entidad Educativa', 
+                                  'Entidad Sanitaria', 
+                                  'Administración Pública' ];
 
   miFormulario: FormGroup = this.fb.group({
     name: ['', [ Validators.required ]],
