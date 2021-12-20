@@ -14,7 +14,7 @@
         <input 
             type="text" 
             class="form-control mt-3"
-            formGroupName="name"
+            formControlName="name"
             placeholder="Introduzca su nombre">
 
         <label 
@@ -25,7 +25,7 @@
         <input 
             type="email" 
             class="form-control mt-3"
-            formGroupName="email"
+            formControlName="email"
             placeholder="Introduzca su email">
 
         <label 
@@ -36,7 +36,7 @@
         <input 
             type="password" 
             class="form-control mt-3"
-            formGroupName="password"
+            formControlName="password"
             placeholder="Introduzca su contrasaeña">
         
         <label 
@@ -44,12 +44,14 @@
             class="form-label mt-4">
             Tipo de organización
         </label>
+        
         <select 
             class="form-select mt-3" 
             id="exampleFormControlSelect1"
-            formGroupName="organizationType"
-            >
-            <option [ngValue]="" disabled>
+            formControlName="organizationType">
+            <option 
+                [disabled]="true"
+                [selected]="true">
                 Seleccione un tipo
             </option>
             <option
@@ -60,7 +62,12 @@
         </select>
         <div class="d-flex justify-content-between mt-5">
             <a routerLink="/auth/login" class="mt-4">Login</a>
-            <button type="submit" class="btn btn-primary mt-3 ">Registrar</button>
+            <button 
+                type="submit" 
+                class="btn btn-primary mt-3 "
+                [disabled]="miFormulario.invalid">
+                Registrar
+            </button>
         </div>
     </div>
 </form>

@@ -20,7 +20,7 @@ export class RegisterComponent {
     name: ['', [ Validators.required ]],
     email: ['', [ Validators.required ]],
     password: ['', [ Validators.required, Validators.minLength(6)]],
-    organizationType: ['Empresa privada', [ Validators.required] ]
+    organizationType: ['Seleccione un tipo', [ Validators.required] ]
   });
 
   constructor( private fb: FormBuilder ) { }
@@ -28,7 +28,5 @@ export class RegisterComponent {
   register() {
     console.log(this.miFormulario.value);
     console.log(this.miFormulario.valid);
-    
-    
   }
 }
