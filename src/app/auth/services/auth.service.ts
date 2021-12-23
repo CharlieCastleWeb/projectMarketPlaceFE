@@ -12,6 +12,12 @@ export class AuthService {
   private baseUrl: string = environment.baseUrl;
   private _usuario!: Usuario;
 
+  private _passwordRegex: RegExp = /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,10}$/;
+
+  get passwordRegex() {
+    return this._passwordRegex;
+  }
+
   get usuario() {
     return { ...this._usuario };
   }

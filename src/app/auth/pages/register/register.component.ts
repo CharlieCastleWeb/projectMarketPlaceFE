@@ -19,9 +19,12 @@ export class RegisterComponent {
                                   'Otros' ];
 
   miFormulario: FormGroup = this.fb.group({
-    name: ['Test', [ Validators.required ]],
-    email: ['test@test.com', [ Validators.required ]],
-    password: ['123456', [ Validators.required, Validators.minLength(6)]],
+    name:     ['Test', [ Validators.required ]],
+    email:    ['test@test.com', [ Validators.required ]],
+    password: ['123456!', [ Validators.required, 
+                            Validators.minLength(6), 
+                            Validators.maxLength(10), 
+                            Validators.pattern(this.authService.passwordRegex)]],
     organizationType: ['', [ Validators.required] ]
   });
 

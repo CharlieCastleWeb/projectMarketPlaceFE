@@ -13,8 +13,11 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
 
   miFormulario: FormGroup = this.fb.group({
-    email: ['test1@test.com', [ Validators.required, Validators.email ]],
-    password: ['123456', [ Validators.required, Validators.minLength(6)]]
+    email: ['test@test.com', [ Validators.required, Validators.email ]],
+    password: ['123456!', [ Validators.required, 
+                            Validators.minLength(6), 
+                            Validators.maxLength(10), 
+                            Validators.pattern(this.authService.passwordRegex)]]
   });
 
   constructor(  private fb: FormBuilder,
