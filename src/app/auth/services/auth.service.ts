@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { catchError, map, of, tap, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AuthResponse, Usuario } from '../interfaces/interfaces';
@@ -11,7 +12,6 @@ export class AuthService {
 
   private baseUrl: string = environment.baseUrl;
   private _usuario!: Usuario;
-
   private _passwordRegex: RegExp = /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,10}$/;
 
   get passwordRegex() {
@@ -25,10 +25,8 @@ export class AuthService {
   constructor( private http: HttpClient ) { }
 
   login( email: string, password: string) {
-    
     const url = `${ this.baseUrl }/auth/login`;
     const body = { email, password }
-
     return this.http.post<AuthResponse>(url, body)
       .pipe(
         tap( resp => {
@@ -43,10 +41,8 @@ export class AuthService {
 
   register( name: string, email: string, 
             password: string, organizationType: string) {
-    
     const url = `${ this.baseUrl }/auth/register`;
     const body = { name, email, password, organizationType }
-
     return this.http.post<AuthResponse>(url, body)
       .pipe(
         tap( resp => {
@@ -80,5 +76,9 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
+  }
+
+  validField( form: FormGroup, field: string ) {
+    return form.controls[field].errors && form.controls[field].touched;
   }
 }

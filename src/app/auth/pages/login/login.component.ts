@@ -13,8 +13,8 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
 
   miFormulario: FormGroup = this.fb.group({
-    email: ['test@test.com', [ Validators.required, Validators.email ]],
-    password: ['123456!', [ Validators.required, 
+    email:    ['', [ Validators.required, Validators.email ]],
+    password: ['', [ Validators.required, 
                             Validators.minLength(6), 
                             Validators.maxLength(10), 
                             Validators.pattern(this.authService.passwordRegex)]]
@@ -25,8 +25,8 @@ export class LoginComponent {
                 private authService: AuthService) { }
 
   login() {
+    this.miFormulario.markAllAsTouched();
     const { email, password } = this.miFormulario.value;
-
     this.authService.login( email, password )
       .subscribe( ok => {
         if ( ok === true ) {
@@ -36,5 +36,11 @@ export class LoginComponent {
         }
       });
   }
+
+  // validateField( field: string ): boolean {    
+  //   console.log(this.miFormulario);
+  //   return this.authService.validField(this.miFormulario, field)!;
+  // }
+
 
 }
