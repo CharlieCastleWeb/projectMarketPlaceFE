@@ -36,11 +36,4 @@ export class LoginComponent {
         }
       });
   }
-
-  // validateField( field: string ): boolean {    
-  //   console.log(this.miFormulario);
-  //   return this.authService.validField(this.miFormulario, field)!;
-  // }
-
-
 }

@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { catchError, map, of, tap, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AuthResponse, Usuario } from '../interfaces/interfaces';
@@ -76,9 +75,5 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
-  }
-
-  validField( form: FormGroup, field: string ) {
-    return form.controls[field].errors && form.controls[field].touched;
   }
 }
