@@ -64,8 +64,25 @@
                 type="password" 
                 class="form-control mt-3"
                 formControlName="password"
+                [ngClass]=" miFormulario.get('password')!.touched 
+                            && miFormulario.get('password')!.errors 
+                            ? 'is-invalid' 
+                            : '' || miFormulario.get('password')!.touched 
+                                    && !miFormulario.get('password')!.invalid 
+                                    ? 'is-valid'
+                                    :''
+                          "
                 placeholder="Introduzca su contrasaeña">
+            <div 
+                class="invalid-feedback">
+                <p>{{miFormulario.get('password')?.hasError('required') ? "Se requiere contraseña" :''}}</p>
+                <p>{{miFormulario.get('password')?.hasError('minlength') ? "La contraseña debe tener al menos 6 carácteres" :''}}</p>
+                <p>{{miFormulario.get('password')?.hasError('maxlength') ? "La contraseña debe tener como máximo 10 carácteres" :''}}</p>
+                <p>{{miFormulario.get('password')?.hasError('pattern') ? "La contraseña debe incluir un símbolo" :''}}</p>
+                
+            </div> 
         </div>
+        
         <div>
             <label 
                 for="exampleFormControlSelect1" 
