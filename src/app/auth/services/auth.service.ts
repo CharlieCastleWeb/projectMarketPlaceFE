@@ -65,7 +65,9 @@ export class AuthService {
           this._usuario = {
             name: resp.name!,
             uid: resp.uid!,
-            email: resp.email!
+            email: resp.email!,
+            organizationType: resp.organizationType,
+            projectList: resp.projectList
           }
           return resp.ok;
         }),
