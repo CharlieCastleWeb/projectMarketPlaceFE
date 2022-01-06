@@ -83,9 +83,31 @@
             </div> 
         </div>
 
-
-        <!-- CREAR SEGUNDO INPUT DE PASSWORD PARA COMPARAR CON EL PASSWORD -->
-        
+        <div>
+            <label 
+                for="passwordCheck" 
+                class="form-label mt-4">
+                Confirmar Contraseña
+            </label>
+            <input 
+                type="password" 
+                class="form-control mt-3"
+                formControlName="passwordCheck"
+                [ngClass]=" miFormulario.get('passwordCheck')!.touched 
+                            && miFormulario.get('passwordCheck')!.errors 
+                            ? 'is-invalid' 
+                            : '' || miFormulario.get('passwordCheck')!.touched 
+                                    && !miFormulario.get('passwordCheck')!.invalid 
+                                    ? 'is-valid'
+                                    :''
+                          "
+                placeholder="Confirme la contraseña">
+            <div 
+                class="invalid-feedback">
+                <p>{{miFormulario.get('passwordCheck')?.hasError('required') ? "Se requiere contraseña" :''}}</p>
+                <p>{{miFormulario.get('passwordCheck')?.hasError('noIguales') ? "Las contraseñas deben coincidir" :''}}</p>
+            </div> 
+        </div>        
         
         <div>
             <label 
@@ -109,6 +131,7 @@
                 </option>
             </select>
         </div>
+
         <div class="d-flex justify-content-between mt-5">
             <a routerLink="/auth/login" class="mt-4">Login</a>
             <button 

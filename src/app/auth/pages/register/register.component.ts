@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
@@ -25,7 +25,11 @@ export class RegisterComponent {
                             Validators.minLength(6), 
                             Validators.maxLength(10), 
                             Validators.pattern(this.authService.passwordRegex)]],
-    organizationType: ['', [ Validators.required] ]
+    passwordCheck: ['', [ Validators.required ]],
+    organizationType: ['', [ Validators.required ]]
+
+  }, {
+    validators: [ this.passwordCheck('password', 'passwordCheck')]
   });
 
   constructor(  private fb: FormBuilder,
@@ -42,5 +46,22 @@ export class RegisterComponent {
           Swal.fire('Error', ok, 'error');
         }
       });
+  }
+
+  passwordCheck( password1: string, password2: string) {
+    
+    return( formGroup: AbstractControl ): ValidationErrors | null => {
+      
+      const pass1 = formGroup.get(password1)?.value;
+      const pass2 = formGroup.get(password2)?.value;
+
+      if ( pass1 !== pass2 ) {
+        formGroup.get(password2)?.setErrors({ noIguales: true});
+        return { noIguales: true}
+      }
+
+      formGroup.get(password2)?.setErrors(null);
+      return null;
+    }
   }
 }
