@@ -1,0 +1,43 @@
+
+
+<div class="container">
+    
+    <app-navbar></app-navbar>
+    
+    <div class="border rounded p-3">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <p 
+                    (click)="goTo(1)"
+                    class="nav-link active">1</p>
+            </li>
+
+            <li class="nav-item">
+                <p 
+                    (click)="goTo(2)"
+                    class="nav-link">2</p>
+            </li>
+
+            <li class="nav-item">
+                <p (click)="goTo(3)" class="nav-link">3</p>
+            </li>
+        </ul>
+
+        <div *ngIf="selectedPage == 1">
+            <app-project-description></app-project-description>
+        </div>
+
+        <div *ngIf="selectedPage == 2">
+            <h5>Hola 2</h5>
+        </div>
+
+        <div *ngIf="selectedPage == 3">
+            <h5>Hola 3</h5>
+        </div>
+
+        <div class="col-10 mx-auto mt-4 d-flex justify-content-between">
+            <i class="icon fas fa-chevron-left"></i>
+            <i class="icon fas fa-chevron-right"></i>
+        </div>
+    </div>
+</div>
