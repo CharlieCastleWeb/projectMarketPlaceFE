@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-create-project',
   templateUrl: './create-project.component.html',
@@ -14,7 +16,8 @@ import { Component } from '@angular/core';
 })
 export class CreateProjectComponent {
 
-  selectedPage: number = 1;
+  model!: NgbDateStruct;
+  selectedPage: number = 2;
 
   constructor() { }
 
